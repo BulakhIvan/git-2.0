@@ -28,88 +28,80 @@ namespace NEW_MODULE_1
             }// lenght arrays
             int[] evenNumb = new int[lenghtEvenArray];
             int[] oddNumb = new int[lenghtOddArray];
-            
+            int odd = 0;
+            int even = 0;
             for (int i = 0; i < numb_toConvert.Length; i++)
             {
                 if (numb_toConvert[i] % 2 == 0)
                 {
-                    int o = 0;
-                    evenNumb[o] = numb_toConvert[i];
-                    o++;
+                    
+                    evenNumb[even] = numb_toConvert[i];
+                    even ++;
                 }
                 else
                 {
-                    int o = 0;
-                    oddNumb[o] = numb_toConvert[i];
-                    o++;
-                }// расделления на четные
+                    
+                    oddNumb[odd] = numb_toConvert[i];
+                  odd++;
+                }// division into even
 
             }
-            string[] alphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+            //string[] alphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
             string[] evenLetters = new string[lenghtEvenArray];
             string[] oddLetters = new string[lenghtEvenArray];
             for (int i = 0; i < evenNumb.Length; i++)
             {
-                int o = evenNumb[i];
-                evenLetters[i] =alphabet[o];
+                evenLetters[i] = Convert.ToString(Convert.ToChar(evenNumb[i]+97));
             }
             for(int i = 0; i < oddNumb.Length; i++)
             {
-                int o = oddNumb[i];
-                oddLetters[i] = alphabet[o];
-            }//замена цифр
-
+                oddLetters[i] = Convert.ToString(Convert.ToChar(evenNumb[i] + 97));
+            }//change numb
+            string [] forUpper = { "a", "e", "i", "d", "h", "j" };
             for (int i = 0; i < evenLetters.Length; i++)
             {
-                evenLetters[i] = evenLetters[i].Replace('a', 'A');
-                evenLetters[i] = evenLetters[i].Replace('e', 'E');
-                evenLetters[i] = evenLetters[i].Replace('i', 'I');
-                evenLetters[i] = evenLetters[i].Replace('d', 'D');
-                evenLetters[i] = evenLetters[i].Replace('h', 'H');
-                evenLetters[i] = evenLetters[i].Replace('j', 'J');
+                for (int j = 0; j < forUpper.Length; j++)
+                {
+                    if(evenLetters[i] == forUpper[j])
+                    {
+                        evenLetters[i] = evenLetters[i].ToUpper();
+                    }
+                }
             }
             for (int i = 0; i < oddLetters.Length; i++)
             {
-                oddLetters[i] = oddLetters[i].Replace('a', 'A');
-                oddLetters[i] = oddLetters[i].Replace('e', 'E');
-                oddLetters[i] = oddLetters[i].Replace('i', 'I');
-                oddLetters[i] = oddLetters[i].Replace('d', 'D');
-                oddLetters[i] = oddLetters[i].Replace('h', 'H');
-                oddLetters[i] = oddLetters[i].Replace('j', 'J');
+                for (int j = 0; j < forUpper.Length; j++)
+                {
+                    if (oddLetters[i] == forUpper[j])
+                    {
+                        oddLetters[i] = oddLetters[i].ToUpper();
+                    }
+                }
             }// up letters
             int upperEvenLetter = 0;
             int upperOddLetter = 0;
+            string[] UpperLetters = { "A", "E", "I", "D", "H", "J" };
             for (int i = 0; i<evenLetters.Length; i++)
             {
-                if (evenLetters[i]=="D")
-                {
-                    upperEvenLetter = upperEvenLetter + 1;
-                }
-                if (evenLetters[i] == "H")
-                {
-                    upperEvenLetter = upperEvenLetter + 1;
-                }
-                if (evenLetters[i] == "J")
-                {
-                    upperEvenLetter = upperEvenLetter + 1;
-                }
+               for (int j = 0; j < forUpper.Length; j++)
+               {
+                    if(evenLetters[i] == UpperLetters[j])
+                    {
+                        upperEvenLetter++;
+                    }
+               }
 
             }
             for (int i = 0; i < oddLetters.Length; i++)
             {
-                if (oddLetters[i] == "A")
+                for (int j = 0; j < forUpper.Length; j++)
                 {
-                    upperOddLetter = upperOddLetter + 1;
+                    if (oddLetters[i] == UpperLetters[j])
+                    {
+                        upperOddLetter++;
+                    }
                 }
-                if (evenLetters[i] == "E")
-                {
-                    upperEvenLetter = upperEvenLetter + 1;
-                }
-                if (evenLetters[i] == "I")
-                {
-                    upperEvenLetter = upperEvenLetter + 1;
-                }
-            }
+            } //how in upper
             if (upperEvenLetter > upperOddLetter)
             {
                 Console.WriteLine("четных букв в верхнем регистре больше " + upperEvenLetter);
